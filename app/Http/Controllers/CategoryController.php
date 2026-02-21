@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
@@ -66,13 +68,13 @@ class CategoryController extends Controller
     {
         $query = Category::query();
 
-        if ($request->include == 'products') {
+        if ($request->include === 'products') {
             $query->with('products');
         }
 
         $category = $query->findOrFail($id);
 
-        return response()->json($category);
+        return new CategoryResource($category);
     }
 
 
