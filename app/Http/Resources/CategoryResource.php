@@ -21,7 +21,9 @@ class CategoryResource extends JsonResource
             'name'      =>  $this->name,
             'slug'      =>  $this->slug,
             'status'    =>  $this->status,
-            'image'     =>  $this->image,
+            'image'     => $this->image 
+                                ? asset('storage/' . $this->image) 
+                                : null,
 
             'is_active' => $this->status === 'active',
             // relationship (only if loaded)

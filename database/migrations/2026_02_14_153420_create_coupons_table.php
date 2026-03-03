@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('value', 10, 2);
             $table->decimal('min_order_amount', 10, 2)->default(0);
             $table->integer('usage_limit')->nullable();
+            $table->integer('per_user_limit')->default(1);
             $table->integer('used_count')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamp('expires_at')->nullable();
